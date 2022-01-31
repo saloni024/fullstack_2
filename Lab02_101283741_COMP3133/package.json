@@ -1,0 +1,16 @@
+{
+  "name": "lab02_101283741_comp3133",
+  "version": "1.0.0",
+  "description": "lab02 week3",
+  "main": "calculator.js",
+  "scripts": {
+    "start": "node ./app/calculator.js",
+    "test": "mocha --reporter spec"
+  },
+  "author": "Saloni Prajapati",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^9.2.0"
+  }
+}
