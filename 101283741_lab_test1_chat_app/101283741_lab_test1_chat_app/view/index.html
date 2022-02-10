@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Group page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif;text-align: center;}
+        
+        button {
+        background-color: red;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        }
+
+        button:hover {
+        opacity: 0.8;
+        }
+
+        .submit {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        }
+
+        .submit:hover {
+        opacity: 0.8;
+        }
+
+        
+
+        </style>
+    </head>
+    <body onload="showError()">
+        <h1>Join group</h1>
+          <div>
+            <button type="submit" class="submit" click="joingroup('news')">
+              News
+            </button>
+          </div>
+          <br>
+          <div>
+            <button type="submit" class="submit" onclick="joingroup('covid19')">
+              Covid-19
+            </button>
+          </div>
+          <br>
+          <div>
+            <button type="submit" class="submit" onclick="joingroup('nodeJS')">
+              NodeJs
+            </button>
+          </div>
+          <br><br>
+          
+        </div>
+        <button type="button" onclick="logOut()">Log out</button>
+      </body>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+        var client = io();
+       
+        function joingroup(room) {
+          var objUrlParams = new URLSearchParams(window.location.search);
+          window.location.href = "../chat/" + room + "?username=" + objUrlParams.get("username");
+        }
+        function logOut() {
+          window.location.href = "/login";
+        }
+        function showError() {
+          var objUrlParams = new URLSearchParams(window.location.search);
+          if (objUrlParams.get("error") == "no_user") {
+            alert("No User Found!");
+          }
+     
+        }
+      </script>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat Room</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif;text-align: center;}
+        form {border: 3px solid black; padding: 20px; width: 40%; margin: auto;}
+        
+        input[type=text], input[type=password] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        }
+
+        button {
+        background-color: wheat;
+        color: black;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 20%;
+        }
+
+        button:hover {
+        opacity: 0.8;
+        }
+
+        </style>
+    </head>
+    <body onload="joinGroup()">
+        <div id="err-message"></div>
+        <div id="group" onclick="leaveGroup()">
+    
+          <h1 id="groupName"></h1>
+        </div>
+        <div id="in">
+          <input type="text" id="message" name="message" placeholder="Type here" oninput="userTyping()" />
+    
+          <button type="button" name="button" onclick="sendMessage()">
+            Send
+          </button>
+          <button type="button" name="button" onclick="leaveGroup()">
+            Leave chat
+          </button>
+        </div>
+        <div id="showchat"></div>
+        <div id="message-container"></div>
+      </body>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+        const client = io();
+        var message = document.getElementById("message-container");
+    
+        client.on("welcome", (data) => {
+          console.log(data);
+          message.innerHTML += "<div>" + data + "</div>";
+        });
+    
+        client.on("newMessage", (msg) => {
+          var temp = message.innerHTML;
+          message.innerHTML = "<div>" + msg + "</div>";
+          message.innerHTML += temp;
+          document.getElementById("showchat").innerHTML = "";
+        });
+        client.on("showChat", (username) => {
+          document.getElementById("showchat").innerHTML = `${username} is typing...`;
+        });
+    
+        function getGroup() {
+          let arr = window.location.href.split("/");
+          arr = arr[arr.length - 1].split("?");
+          return arr[0];
+        }
+        function getUser(){
+          let arr = window.location.href.split("/");
+          arr = arr[arr.length - 1].split("?");
+          arr2 = arr[arr.length - 1].split("=")
+          return arr2[arr2.length - 1];
+        }
+        function joinGroup() {
+          client.emit("joingroup", getGroup());
+          document.getElementById("groupName").innerHTML = getGroup();
+        }
+        
+        function sendMessage() {
+          document.getElementById("showchat").innerHTML = "";
+      
+          client.emit("message", {
+            room: getGroup(),
+            message: document.getElementById("message").value,
+            user: getUser()
+          });
+        }
+    
+        function leaveGroup() {
+          client.emit("leaveGroup");
+          window.location.href = "/index";
+        }
+    
+        function userTyping() {
+          user = getUser();
+          client.emit("userTyping", {
+            username: user,
+            room: getGroup(),
+          });
+          document.getElementById("showchat").innerHTML = `<p>${user} is typing...</p>`;
+        }
+      </script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+        form {border: 3px solid black; padding: 20px; width: 40%; margin: auto;}
+        
+        input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        }
+
+        #submit {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        }
+
+        #submit:hover {
+        opacity: 0.8;
+        }
+
+        </style>
+    </head>
+    <body>
+        <h1>Sign up for your account</h1>
+        <form method="post" action="/login">
+            First name: <input id="firstname" type="text" name="firstname" placeholder="enter firstname" required>
+            <br><br>
+            Last name: <input id="lastname" type="text" name="lastname" placeholder="enter lastname" required>
+            <br><br>
+            Username: <input id="username" type="text" name="username" placeholder="enter username" required>
+            <br><br>
+            Password: <input id="password" type="password" name="password" placeholder="********" required>
+            <br><br>
+            Confirm password: <input id="confirmpassword" type="password" name="confirmpassword" placeholder="********" required>
+            <br><br>
+            <input type="submit" id="submit" value="Submit" onclick="validate()">
+            <br>
+            <br>
+            <p><a href="/login">Log in to existing account</a></p>
+            <br>
+            <div id="message"></div>
+        </form>
+        <script>
+            function validate() {
+                var objUrlParams = new URLSearchParams(window.location.search);
+                if (objUrlParams.get("error") == "username") {
+                    document.getElementById("message").innerHTML = "Username already exists!";
+                }
+            }
+        </script>
+    </body>
+</html>

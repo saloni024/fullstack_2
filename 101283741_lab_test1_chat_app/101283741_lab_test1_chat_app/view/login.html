@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+        form {border: 3px solid black; padding: 20px; width: 40%; margin: auto;}
+        
+        input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        }
+
+        #submit {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        }
+
+        #submit:hover {
+        opacity: 0.8;
+        }
+
+        </style>
+    </head>
+    <body>
+        <h1>Login to your account</h1>
+        <form method="post" action="/">
+            Username: <input id="username" type="text" name="username" placeholder="enter username" required>
+            <br><br>
+            Password: <input id="password" type="password" name="password" placeholder="********" required>
+            <br><br>
+            <input type="submit" id="submit" value="Log in" onclick="validate()">
+            <br>
+            <p><a href="/signup">Create new account</a></p>
+            <br>
+            <div id="message"></div>
+            <script>
+                function validate() {
+                    var objUrlParams = new URLSearchParams(window.location.search);
+                    if (objUrlParams.get("error") == "username") {
+                        document.getElementById("message").innerHTML = "Incorrect username!";
+                    } else if (objUrlParams.get("error") == "password") {
+                        document.getElementById("message").innerHTML = "Incorrect password!";
+                    }
+                }
+            </script>
+        </form>
+    </body>
+</html>
