@@ -1,0 +1,26 @@
+{
+  "name": "101283741_comp3133_assig1",
+  "version": "1.0.0",
+  "description": "COMP3133 Assignment 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Saloni Prajapati",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.6.3",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "graphql-express": "^2.0.5",
+    "mongoose": "^6.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
