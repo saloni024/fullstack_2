@@ -31,8 +31,10 @@ mongoose.connect(mongodb_atlas_url, {
   console.log('Error Mongodb connection', err)
 });
 
-app.use(userRouter);
-app.listen(8081, () => { console.log('Server is running...') });
+//!!!IMPORTANT!!! - Uncomment bottom two lines while using postman
+
+//app.use(userRouter);
+//app.listen(8081, () => { console.log('Server is running...') });
 
 //Define Apollo Server
 const server = new ApolloServer({
@@ -41,11 +43,11 @@ const server = new ApolloServer({
 })
 
 
+//!!!IMPORTANT!!! - Comment bottom lines while using postman
 
 //start apollo server
-/*server.start().then(res => {
+server.start().then(res => {
   server.applyMiddleware({ app });
   app.listen({ port: process.env.PORT }, () =>
   console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`));
-  
- })*/
+})
