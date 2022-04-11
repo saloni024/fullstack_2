@@ -66,6 +66,10 @@ exports.typeDefs = gql`
     }
 
     type Mutation {
+        login(
+            username: String!, 
+            password: String!
+            ): String,
         addUser(
             username: String!
             firstname: String!

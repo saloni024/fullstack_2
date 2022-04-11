@@ -2,6 +2,7 @@ const User = require('../model/users')
 const Booking = require('../model/bookings')
 const Listing = require('../model/listings')
 const { GraphQLScalarType, Kind } = require('graphql');
+const jwt = require('jsonwebtoken')
 
 const dateScalar = new GraphQLScalarType({
     name: 'Date',
@@ -72,6 +73,26 @@ exports.resolvers = {
     },
 
     Mutation: {
+        login: async (args) => {
+            return User.findOne({ username: args.username }).then((user) => {
+              if (!user) {
+                return "user not found";
+              }
+              if (args.password !== user.password) {
+                return "password is incorrect";
+              }
+              let token = jwt.sign(
+                {
+                  username: user.username,
+                  email: user.email,
+                  type: user.type,
+                },
+                "secret",
+                { expiresIn: "1000000" }
+              );
+              return token;
+            });
+          },
         addUser: async(parent,args)=>{
             let newUser = User({
                 username: args.username,

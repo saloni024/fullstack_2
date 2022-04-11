@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Login</h1>
+    <form (ngSubmit)="login()">
+      <mat-form-field appearance="outline">
+        <label>Username</label>
+        <input matInput ngModel name="username" [(ngModel)]="username" />
+      </mat-form-field>
+      <pre></pre>
+      <mat-form-field appearance="outline">
+        <label>Password</label>
+        <input
+          matInput
+          ngModel
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+        />
+      </mat-form-field>
+      <pre></pre>
+      <button mat-raised-button type="submit">Login</button>
+    </form>
+  </div>
+  
