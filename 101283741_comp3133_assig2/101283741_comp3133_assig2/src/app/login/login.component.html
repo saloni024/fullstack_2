@@ -1,23 +1,37 @@
 <div class="container">
-    <h1>Login</h1>
-    <form (ngSubmit)="login()">
-      <mat-form-field appearance="outline">
-        <label>Username</label>
-        <input matInput ngModel name="username" [(ngModel)]="username" />
-      </mat-form-field>
-      <pre></pre>
-      <mat-form-field appearance="outline">
-        <label>Password</label>
-        <input
-          matInput
-          ngModel
-          name="password"
-          type="password"
-          [(ngModel)]="password"
-        />
-      </mat-form-field>
-      <pre></pre>
-      <button mat-raised-button type="submit">Login</button>
-    </form>
+    <mat-card class="card">
+      <mat-card-title>Login</mat-card-title>
+      <form class="form" (ngSubmit)="onSubmit($event)" method="post">
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Enter Username..."
+            (change)="changeInput('username', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="Enter Password..."
+            (change)="changeInput('password', $event)"
+          />
+        </mat-form-field>
+        <mat-card *ngIf="isError" class="alert-error">
+          Error: {{ errorMessage }}
+        </mat-card>
+        <mat-card-actions class="action">
+          <button type="submit" mat-raised-button color="primary">Login</button>
+        </mat-card-actions>
+        <div class="footer">
+          <p>
+            Or dont have account?
+            <a routerLink="/signup">Signup</a>
+          </p>
+        </div>
+      </form>
+    </mat-card>
   </div>
   

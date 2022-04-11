@@ -1,0 +1,56 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .content {
+    padding: 20px;
+  
+    .action {
+      flex: 1;
+      display: flex;
+      justify-content: end;
+    }
+  
+    form {
+      display: flex;
+      justify-content: end;
+  
+      .mat-form-field {
+        background-color: #fff;
+        min-width: 20%;
+      }
+  
+      button {
+        height: 52px;
+        width: 100px;
+      }
+    }
+  
+    .content-main {
+  
+      .alert-error {
+        background-color: #c31d00;
+        color: #ffffff;
+      }
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+  
+      .item {
+        margin: 15px;
+        .card{
+          width: 100%;
+          padding: 10px;
+          border-radius: 10px;
+          border: 2px solid #ccc;
+          p {
+            margin: 5px 0px;
+          }
+        }
+      }
+    }
+  }
+  

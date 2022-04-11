@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-card class="card">
+      <mat-card-title>New Booking</mat-card-title>
+      <form class="form" (ngSubmit)="onSubmit($event)" method="post">
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Booking ID</mat-label>
+          <input
+            matInput
+            placeholder="Enter Booking ID..."
+            (change)="changeInput('booking_id', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Booking Date</mat-label>
+          <input
+            type="date"
+            matInput
+            placeholder="Enter Booking Date..."
+            (change)="changeInput('booking_date', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Booking Start</mat-label>
+          <input
+            type="date"
+            matInput
+            placeholder="Enter Booking Start..."
+            (change)="changeInput('booking_start', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Booking End</mat-label>
+          <input
+            type="date"
+            matInput
+            placeholder="Enter Booking End..."
+            (change)="changeInput('booking_end', $event)"
+          />
+        </mat-form-field>
+        <mat-card *ngIf="isError" class="alert-error">
+          Error: {{ errorMessage }}
+        </mat-card>
+        <mat-card *ngIf="isSuccess" class="alert-success">
+          Booking Success <a [routerLink]="['/booking']">See My Booking </a>
+        </mat-card>
+        <mat-card-actions class="action">
+          <button type="submit" mat-raised-button color="primary">Booking</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  

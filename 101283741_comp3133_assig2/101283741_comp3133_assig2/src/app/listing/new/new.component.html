@@ -1,0 +1,84 @@
+<div class="container">
+    <mat-card class="card">
+      <mat-card-title>New Listing</mat-card-title>
+      <form class="form" (ngSubmit)="onSubmit($event)" method="post">
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Listing ID</mat-label>
+          <input
+            matInput
+            placeholder="Enter Listing ID..."
+            (change)="changeInput('listing_id', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Listing Title</mat-label>
+          <input
+            matInput
+            placeholder="Enter Listing Title..."
+            (change)="changeInput('listing_title', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            placeholder="Enter Description..."
+            (change)="changeInput('description', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Street</mat-label>
+          <input
+            matInput
+            placeholder="Enter Street..."
+            (change)="changeInput('street', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            placeholder="Enter City..."
+            (change)="changeInput('city', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Postal Code</mat-label>
+          <input
+            matInput
+            placeholder="Enter Postal Code..."
+            (change)="changeInput('postal_code', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Enter Email..."
+            (change)="changeInput('email', $event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>price</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder="Enter Email..."
+            (change)="changeInput('price', $event)"
+          />
+        </mat-form-field>
+        <mat-card *ngIf="isError" class="alert-error">
+          Error: {{ errorMessage }}
+        </mat-card>
+        <mat-card *ngIf="isSuccess" class="alert-success">
+          Add Listing Success <a (click)="seeAllListing()">See All Listing </a>
+        </mat-card>
+        <mat-card-actions class="action">
+          <button type="submit" mat-raised-button color="primary">
+            Add Listing
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  

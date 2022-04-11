@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "101283741_comp3133_assig2": {
+    "101233105_comp3133_assig2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/101283741_comp3133_assig2",
+            "outputPath": "dist/101233105_comp3133_assig2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "101283741_comp3133_assig2:build:production"
+              "browserTarget": "101233105_comp3133_assig2:build:production"
             },
             "development": {
-              "browserTarget": "101283741_comp3133_assig2:build:development"
+              "browserTarget": "101233105_comp3133_assig2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "101283741_comp3133_assig2:build"
+            "browserTarget": "101233105_comp3133_assig2:build"
           }
         },
         "test": {
@@ -109,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "101283741_comp3133_assig2"
+  "defaultProject": "101233105_comp3133_assig2"
 }

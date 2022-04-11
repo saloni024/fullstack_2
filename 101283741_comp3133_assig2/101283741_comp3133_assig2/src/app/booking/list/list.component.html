@@ -1,0 +1,51 @@
+<div class="container">
+    <mat-toolbar>
+      <span>Customer</span>
+      <span class="example-spacer"></span>
+      <button (click)="onLogout()" mat-raised-button color="warn" aria-label="">
+        LOGOUT
+      </button>
+    </mat-toolbar>
+    <div class="content">
+      <mat-card>
+        <div class="content-top">
+          <h1>My Booking History</h1>
+          <div class="action">
+            <button
+              (click)="addBooking()"
+              mat-raised-button
+              color="primary"
+              aria-label=""
+            >
+              All Listing
+            </button>
+          </div>
+        </div>
+        <div class="content-main">
+          <mat-card *ngIf="isError" class="alert-error">
+            {{ errorMessage }}
+          </mat-card>
+          <div *ngIf="isLoading; else content" class="loading">Loading...</div>
+          <ng-template #content>
+            <div class="item-header">
+              <strong>Booking ID</strong>
+              <strong>Listing ID</strong>
+              <strong>Booking Date</strong>
+              <strong>Booking Start</strong>
+              <strong>Booking End</strong>
+              <strong>Username</strong>
+            </div>
+            <div class="item" *ngFor="let item of response">
+              <p>{{ item.booking_id }}</p>
+              <p>{{ item.listing_id }}</p>
+              <p>{{ item.booking_date | date: "yyyy-MM-dd" }}</p>
+              <p>{{ item.booking_start | date: "yyyy-MM-dd" }}</p>
+              <p>{{ item.booking_end | date: "yyyy-MM-dd" }}</p>
+              <p>{{ item.username }}</p>
+            </div>
+          </ng-template>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  

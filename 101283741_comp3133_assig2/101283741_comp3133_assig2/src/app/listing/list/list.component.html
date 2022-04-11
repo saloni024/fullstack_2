@@ -1,0 +1,91 @@
+<div class="container">
+    <mat-toolbar>
+      <span>Listing</span>
+      <span class="example-spacer"></span>
+      <button (click)="onLogout()" mat-raised-button color="warn" aria-label="">
+        LOGOUT
+      </button>
+    </mat-toolbar>
+    <div class="content">
+      <form (ngSubmit)="onSearch($event)" method="post">
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Search Name</mat-label>
+          <input
+            matInput
+            (change)="changeSearch('name', $event)"
+            placeholder="Ex. Sea face home..."
+          />
+        </mat-form-field>
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Search City</mat-label>
+          <input
+            matInput
+            (change)="changeSearch('city', $event)"
+            placeholder="Ex. Toronto..."
+          />
+        </mat-form-field>
+  
+        <mat-form-field class="form-group" appearance="fill">
+          <mat-label>Search Postal Code</mat-label>
+          <input
+            matInput
+            (change)="changeSearch('postal_code', $event)"
+            placeholder="Ex. M1X0Y5..."
+          />
+        </mat-form-field>
+  
+        <button type="submit" mat-raised-button color="primary">Search</button>
+        <button
+          type="button"
+          (click)="getData()"
+          mat-raised-button
+          color="accent"
+        >
+          Show all
+        </button>
+      </form>
+      <div>
+        <div class="action">
+          <button
+            *ngIf="createListing"
+            (click)="addListing()"
+            mat-raised-button
+            color="primary"
+            aria-label=""
+          >
+            Add New Listing
+          </button>
+        </div>
+        <div class="content-main">
+          <mat-card *ngIf="isError" class="alert-error">
+            {{ errorMessage }}
+          </mat-card>
+          <div *ngIf="isLoading; else content" class="loading">Loading...</div>
+          <ng-template #content>
+            <mat-grid-list cols="3" rowHeight="2:1">
+              <mat-grid-tile class="item" *ngFor="let item of response">
+                <div class="card">
+                  <h2>({{ item.listing_id }}) {{ item.listing_title }}</h2>
+                  <p>{{ item.description }}</p>
+                  <p>
+                    {{ item.street }}, {{ item.city }}, {{ item.postal_code }}
+                  </p>
+                  <p>({{ item.username }}) {{ item.email }}</p>
+                  <h2>Price: ${{ item.price }}</h2>
+                  <button
+                    *ngIf="bookingListing"
+                    (click)="addBooking(item.listing_id)"
+                    mat-raised-button
+                    color="primary"
+                  >
+                    Booking
+                  </button>
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  
